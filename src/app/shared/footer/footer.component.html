@@ -1,0 +1,14 @@
+
+<footer>
+    <div class="fixed-bottom text-center bg-dark text-light py-2 text-sm"
+        *ngIf="vmostrar_pantallaPrincipal || vmostrar_registroClientes">
+        <p>&copy; 2023 Veterinaria. Todos los derechos reservados.</p>
+        <p>Dirección: Calle Principal 123, Ciudad, País</p>
+        <p>Teléfono: +1234567890</p>
+    </div>
+
+    <div class="FooterLogin" *ngIf="!vmostrar_pantallaPrincipal && !vmostrar_registroClientes">
+        &copy; Creado por Samuel Reyes. Todos los derechos reservados 2023
+    </div>
+</footer>
+

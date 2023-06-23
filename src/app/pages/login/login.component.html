@@ -1,0 +1,89 @@
+<div class="LoginContainer background_image">
+    <div class="box-image">
+        <img src="../assets/imagenes/image4.jpg" alt="">
+    </div>
+    <div class="buttons-container">
+        <button id="login-button" class="square-button" *ngFor="let menu of listaMenu"
+            [class.active-button]="botonSeleccionado === menu.nombre" (click)="mostrarMenu(menu.nombre)">
+            <i [class]="menu.icono"></i> {{ menu.nombre}}
+        </button>
+    </div>
+    <div [ngSwitch]="vmostrar_modulo">
+        <div class="boxLogin" *ngSwitchCase="'Login'">
+            <h2 id="login-title">Login Here</h2>
+            <div class="ContainerInputs">
+                <i class="fas fa-envelope"></i>
+                <input type="email" placeholder="Email">
+            </div>
+            <div class="ContainerInputs">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Password">
+            </div>
+            <button id="button-box" (click)="mostrarPantallaprincipal()">Login</button>
+            <a class="forgot-password-link" (click)="mostrarMenu('Recover Password')">¿Olvidaste tu
+                contraseña?</a>
+        </div>
+
+        <form [formGroup]="formCrearUsuario">
+            <div class="boxLogin" *ngSwitchCase="'Register'">
+                <h2 id="register-title">Register</h2>
+                <div class="ContainerInputs">
+                    <i class="fa-solid fa-face-smile"></i>
+                    <input type="text" placeholder="Full Name" formControlName="nombreUsuario">
+                    <span *ngIf="nombreUsuarioNoValido">Por favor ingresar datos validos</span>
+                </div>
+                <div class="ContainerInputs">
+                    <i class="fa-solid fa-phone"></i>
+                    <input type="tel" placeholder="Cell Phone Mumber" formControlName="telefonoUsuario">
+                    <span *ngIf="telefonoUsuarioNoValido">Por favor ingresar datos validos</span>
+                </div>
+                <div class="ContainerInputs">
+                    <i class="fa-solid fa-id-card"></i>
+                    <input type="text" placeholder=" Identificacion" formControlName="identificacionUsuario">
+                    <span *ngIf="identificacionUsuarioNoValido">Por favor ingresar datos validos</span>
+                </div>
+                <div class="ContainerInputs">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" placeholder="Email" formControlName="emailUsuario">
+                    <span *ngIf="emailNoValido">Por favor ingresar datos validos</span>
+                </div>
+                <div class="ContainerInputs">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder=" New Password" formControlName="contraseña">
+                    <span *ngIf="contraseNoValido">Por favor ingresar datos validos</span>
+                </div>
+                <div class="ContainerInputs">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder=" Confirm Password" formControlName="contraseñaConfirmada">
+                    <span *ngIf="contraseConfirmadaNoValido">Por favor ingresar datos validos</span>
+                </div>
+                <button id="buttonRegister" (click)="agregarUsuario()">Register</button>
+                <a class="forgot-password-link" (click)="mostrarMenu('Recover Password')">¿Olvidaste tu
+                    contraseña?</a>
+            </div>
+        </form>
+
+        <form [formGroup]="formRecuperarContrase">
+            <div class="boxLogin" *ngSwitchCase="'Recover Password'">
+                <h2 id="login-title">Recover Password</h2>
+                <div class="ContainerInputs">
+                    <i class="fa-solid fa-id-card"></i>
+                    <input type="text" placeholder=" Identificacion" formControlName="identificacionRecuperacion">
+                    <span *ngIf="identificacionRecuperacionNoValido">Por favor ingresar datos validos</span>
+                </div>
+                <div class="ContainerInputs">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="New Password" formControlName="contraseñaRecuperacion">
+                    <span *ngIf="contraseRecuperacionNoValido">Por favor ingresar datos validos</span>
+                </div>
+                <div class="ContainerInputs">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Confirm Password" formControlName="confirmaContraRecuperacion">
+                    <span *ngIf="contraseRecuperacionConfirmadaNoValido">Por favor ingresar datos validos</span>
+                </div>
+                <button id="buttonRecover" (click)="recuperarContrase()">Recuperar contraseña</button>
+            </div>
+        </form>
+    </div>
+
+</div>

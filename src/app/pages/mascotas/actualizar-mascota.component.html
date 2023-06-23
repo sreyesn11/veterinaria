@@ -1,0 +1,114 @@
+<div class="col-md-9">
+    <div class="container mt-4">
+        <h2>Registrar nueva mascota</h2>
+        <form [formGroup]="formCrearMascota">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="nombreMascota" class="form-label">Nombre de la mascota</label>
+                        <input type="text" class="form-control" id="nombreMascota" formControlName="nombreMascota">
+                        <span *ngIf="nombreMascotaNoValido">Por favor ingresar datos validos</span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="raza" class="form-label">Raza</label>
+                        <input type="text" class="form-control" id="raza" formControlName="raza">
+                        <span *ngIf="razaNoValido">Por favor ingresar datos validos</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+                        <input type="date" class="form-control" id="fechaNacimiento" formControlName="fechaNacimiento">
+                        <span *ngIf="fechaNacimientoNoValido">Por favor ingresar datos validos</span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="cliente">Nombre cliente:</label><br>
+                        <select class="form-control" id="cliente" (change)="cambioDeUsuario()"
+                            formControlName="identificacionCliente">
+                            <option value="">Selecciona una opción</option>
+                            <option [value]="cliente.identificacion" *ngFor="let cliente of listaClientes">
+                                {{cliente.nombreCliente}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-secondary" (click)="registrarMascota()"
+                [disabled]="formCrearMascota.invalid || !vclientesRegistrados">
+                Registrar nueva mascota</button>
+        </form>
+        <!--  -->
+
+        <!-- Botón que abre el modal -->
+        <button type="button" class="btn btn-secondary" [disabled]="listaMascotas.length === 0"
+            (click)="guardarMascota()">
+            Guardar mascotas registradas
+        </button>
+    </div>
+</div>
+
+<div class="mt-5">
+    <h2>Mascotas registradas</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nombre de la mascota</th>
+                <th scope="col">Raza</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Nombre del cliente</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Aquí agregar dinámicamente las filas con los datos de las mascotas registradas -->
+            <tr *ngFor="let mascota of listaMascotas">
+                <td>{{mascota.nombreMascota}}</td>
+                <td>{{mascota.raza}}</td>
+                <td>{{mascota.fechaNacimiento}}</td>
+                <td>{{vIdentificacionClienteAnterior}}</td>
+                <td><button class="btn btn-secondary" (click)="editarMascota(mascota)">Editar</button></td>
+                <td><button class="btn btn-secondary" (click)="eliminarMascota(mascota)">Eliminar</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<button type="button" id="modalNotificacion" class="btn btn-secondary" data-toggle="modal" data-target="#myModal"
+    [hidden]="true">
+</button>
+
+<!-- Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Encabezado del modal -->
+            <div class="modal-header">
+                <h4 class="modal-title">Confirmación</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Contenido del modal -->
+            <div class="modal-body">
+                <p>{{vMensajeNotificacion}}</p>
+            </div>
+
+            <!-- Pie del modal -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal"
+                    (click)="cancelarCambioDeUsuario()">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                    (click)="eliminarMascotasRegistradas()">OK</button>
+            </div>
+
+        </div>
+    </div>
+</div>

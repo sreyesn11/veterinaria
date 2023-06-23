@@ -114,11 +114,11 @@ export class LoginComponent {
         usuario.contraseña = nuevaContraseña;
         usuario.contraseñaConfirmada = nuevaContraseñaConfirmada;
         this.serviceCore.guardarUsuario(usuario);
-        alert('Cambio de contraseña realizado.');
+        alert('Cambio de contraseña realizado');
         this.formRecuperarContrase.reset();
       }
       else{
-        alert('Cambio de contraseña no realizado.');
+        alert('Cambio de contraseña no realizado');
       }
     }
   }

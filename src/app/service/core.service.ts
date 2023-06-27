@@ -11,6 +11,15 @@ export class CoreService {
 
   constructor() { }
 
+  iniciarSesion(identificacion:string, contraseña:string){
+    for(let i=0; i < this.listaUsuarios.length; i++){
+      if (this.listaUsuarios[i].identificacionUsuario == identificacion && this.listaUsuarios[i].contraseña == contraseña) {
+        return this.listaUsuarios[i];
+      }
+    }
+    return undefined;
+  }
+
   agregarCliente(cliente:ModelClientes) {
     this.listaClientes.push(cliente);
     console.log("lista clientes",this.listaClientes)

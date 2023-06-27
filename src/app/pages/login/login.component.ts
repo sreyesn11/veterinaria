@@ -16,6 +16,7 @@ export class LoginComponent {
 
   formCrearUsuario: FormGroup = new FormGroup({});
   formRecuperarContrase: FormGroup = new FormGroup({});
+  formLogin: FormGroup = new FormGroup({});
 
 
   vmostrar_modulo: string = "Login";
@@ -46,6 +47,11 @@ export class LoginComponent {
     this.listaMenu.push(menuRegister);
     this.listaMenu.push(menuRecoverPassword);
 
+    this.formLogin = this.fb.group({
+      identificacionLogin: ['', Validators.required],
+      contraseñaLogin: ['', Validators.required]
+    });
+
     this.formCrearUsuario = this.fb.group({
       nombreUsuario: ['', Validators.required],
       telefonoUsuario: ['', Validators.required],
@@ -58,9 +64,18 @@ export class LoginComponent {
     this.formRecuperarContrase = this.fb.group({
       identificacionRecuperacion: ['', Validators.required],
       contraseñaRecuperacion: ['', Validators.required],
-      confirmaContraRecuperacion: ['', Validators.required],
-    })
+      confirmaContraRecuperacion: ['', Validators.required]
+    });
+
   }
+
+  get identificacionLoginNoValido() {
+    return this.formLogin.get('identificacionLogin')?.invalid && this.formLogin.get('identificacionLogin')?.touched;
+  }
+  get contraseLoginNoValido() {
+    return this.formLogin.get('contraseñaLogin')?.invalid && this.formLogin.get('contraseñaLogin')?.touched;
+  }
+
 
   get nombreUsuarioNoValido() {
     return this.formCrearUsuario.get('nombreUsuario')?.invalid && this.formCrearUsuario.get('nombreUsuario')?.touched;
@@ -94,6 +109,24 @@ export class LoginComponent {
       this.formRecuperarContrase.get('confirmaContraRecuperacion')?.value != this.formRecuperarContrase.get('contraseñaRecuperacion')?.value;
   }
 
+  loginUsuario() {
+    if (this.formLogin.invalid) {
+      return;
+    }
+
+    let identificacion = this.formLogin.value.identificacionLogin;
+    let contraseña = this.formLogin.value.contraseñaLogin;
+    let usuarioLogin = this.serviceCore.iniciarSesion(identificacion, contraseña);
+
+    if (usuarioLogin) {
+      alert("Ingreso Exitoso")
+      this.router.navigate(['/clientes']);
+    }
+    else {
+      alert("Ingreso Invalido, Porfavor revisa que la identificacion y la contraseña sean validas");
+    }
+  }
+
   agregarUsuario() {
     if (this.formCrearUsuario.invalid) {
       return;
@@ -117,7 +150,7 @@ export class LoginComponent {
         alert('Cambio de contraseña realizado');
         this.formRecuperarContrase.reset();
       }
-      else{
+      else {
         alert('Cambio de contraseña no realizado');
       }
     }
@@ -132,6 +165,5 @@ export class LoginComponent {
   mostrarPantallaprincipal() {
     // this.vmostrar_pantallaPrincipal = true;
     // this.vmostrar_registroClientes = false;
-    this.router.navigate(['/clientes']);
   }
 }

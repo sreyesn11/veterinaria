@@ -9,20 +9,24 @@
         </button>
     </div>
     <div [ngSwitch]="vmostrar_modulo">
-        <div class="boxLogin" *ngSwitchCase="'Login'">
-            <h2 id="login-title">Login Here</h2>
-            <div class="ContainerInputs">
-                <i class="fas fa-envelope"></i>
-                <input type="email" placeholder="Email">
+        <form [formGroup]="formLogin">
+            <div class="boxLogin" *ngSwitchCase="'Login'">
+                <h2 id="login-title">Login Here</h2>
+                <div class="ContainerInputs">
+                    <i class="fa-solid fa-id-card"></i>
+                    <input type="text" placeholder="Identificacion" formControlName="identificacionLogin">
+                    <span *ngIf="identificacionLoginNoValido">Por favor ingresar datos validos</span>
+                </div>
+                <div class="ContainerInputs">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Password" formControlName="contraseñaLogin">
+                    <span *ngIf="contraseLoginNoValido">Por favor ingresar datos validos</span>
+                </div>
+                <button id="button-box" (click)="loginUsuario()">Login</button>
+                <a class="forgot-password-link" (click)="mostrarMenu('Recover Password')">¿Olvidaste tu
+                    contraseña?</a>
             </div>
-            <div class="ContainerInputs">
-                <i class="fas fa-lock"></i>
-                <input type="password" placeholder="Password">
-            </div>
-            <button id="button-box" (click)="mostrarPantallaprincipal()">Login</button>
-            <a class="forgot-password-link" (click)="mostrarMenu('Recover Password')">¿Olvidaste tu
-                contraseña?</a>
-        </div>
+        </form>
 
         <form [formGroup]="formCrearUsuario">
             <div class="boxLogin" *ngSwitchCase="'Register'">

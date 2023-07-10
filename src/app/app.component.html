@@ -1,29 +1,12 @@
-<ng-container *ngIf="currentRoute !== '/login'">
+<ng-container>
     <app-header></app-header>
-</ng-container>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
-
-<!-- <div class="pantallaPrincipal" *ngIf="vmostrar_pantallaPrincipal">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-3 bg-light">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-outline-secondary btn-sm text-black" href="#"
-                            (click)="mostrarPantallaprincipal()">Mascotas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-outline-secondary btn-sm text-black" href="#"
-                            (click)="mostrarRegistroClientes()">Clientes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-outline-secondary btn-sm text-black" href="#">Acerca de</a>
-                    </li>
-                </ul>
-            </div>
+    <div class="row">
+        <div class="col-md-3 bg-light">
+            <app-menu ></app-menu>
+        </div>
+        <div [class]="usuarioAutenticado == null?'col-12':'col-md-9' ">
+            <router-outlet></router-outlet>
         </div>
     </div>
-</div> -->
-
-<!-- <router-outlet></router-outlet> -->
+</ng-container>
+<app-footer></app-footer>

@@ -46,6 +46,7 @@ export class ActualizarClienteComponent {
     }
   }
 
+
   get nombreClienteNoValido() {
     return this.formCrearCliente.get('nombreCliente')?.invalid && this.formCrearCliente.get('nombreCliente')?.touched;
   }
@@ -70,16 +71,7 @@ export class ActualizarClienteComponent {
       this.serviceCore.agregarCliente(cliente);
     }
     this.formCrearCliente.reset();
-    this.router.navigate(['/clientes'])
+    this.router.navigate(['/administrador/clientes'])
   }
 
-  // mostrarPantallaprincipal() {
-  //   this.vmostrar_pantallaPrincipal = true;
-  //   this.vmostrar_registroClientes = false;
-  // }
-
-  // mostrarRegistroClientes() {
-  //   this.vmostrar_registroClientes = true;
-  //   this.vmostrar_pantallaPrincipal = false;
-  // }
 }

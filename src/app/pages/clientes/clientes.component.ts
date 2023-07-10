@@ -28,10 +28,10 @@ export class ClientesComponent {
   }
 
   agregarCliente(){
-    this.router.navigate(['/actualizarClientes/creacioncliente'])
+    this.router.navigate(['administrador/actualizarClientes/creacioncliente'])
   }
 
   editarCliente(identificacion:any){
-    this.router.navigate(['/actualizarClientes/'+ identificacion])
+    this.router.navigate(['administrador/actualizarClientes/'+ identificacion])
   }
 }

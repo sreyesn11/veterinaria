@@ -13,6 +13,9 @@ import { PagesComponent } from './pages/pages.component';
 import { MascotasComponent } from './pages/mascotas/mascotas.component';
 import { ActualizarMascotaComponent } from './pages/mascotas/actualizar-mascota.component';
 import { CoreModule } from './core-module/core-module.module';
+import { MenuComponent } from './pages/menu/menu.component';
+import { ActualizarProductosComponent } from './pages/productos/actualizar-productos.component';
+import { ProductosComponent } from './pages/productos/productos.component';
 
 
 @NgModule({
@@ -25,7 +28,10 @@ import { CoreModule } from './core-module/core-module.module';
     LoginComponent,
     PagesComponent,
     MascotasComponent,
-    ActualizarMascotaComponent
+    ActualizarMascotaComponent,
+    MenuComponent,
+    ActualizarProductosComponent,
+    ProductosComponent,
   ],
   imports: [
     BrowserModule,

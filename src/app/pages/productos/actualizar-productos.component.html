@@ -1,0 +1,60 @@
+<div class="pantallaRegistroProductos">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="container mt-4">
+                    <h2>Registrar nuevo producto</h2>
+                    <form [formGroup]="formCrearProducto">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="idProducto" class="form-label">ID del producto</label>
+                                    <input type="text" class="form-control" id="idProducto"
+                                        formControlName="id">
+                                    <span *ngIf="idProductoNoValido">Por favor ingresar datos válidos</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="nombreProducto" class="form-label">Nombre del producto</label>
+                                    <input type="text" class="form-control" id="nombreProducto"
+                                        formControlName="nombreProducto">
+                                    <span *ngIf="nombreProductoNoValido">Por favor ingresar datos válidos</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="descripcion" class="form-label">Descripción</label>
+                                    <input type="text" class="form-control" id="descripcion"
+                                        formControlName="descripcion">
+                                    <span *ngIf="descripcionNoValido">Por favor ingresar datos válidos</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="precio" class="form-label">Precio</label>
+                                    <input type="number" class="form-control" id="precio" formControlName="precio">
+                                    <span *ngIf="precioNoValido">Por favor ingresar datos válidos</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="imagen" class="form-label">Imagen</label>
+                                    <input type="file" accept="image/*" class="form-control" id="imagen" formControlName="imagen" (change)="actualizarImagen($event)">
+                                    <span *ngIf="imagenNoValido">Por favor selecciona una imagen válida</span>
+                                  </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-secondary" (click)="agregarProducto()"
+                            [disabled]="formCrearProducto.invalid">Registrar nuevo producto</button>
+                    </form>
+                    <button class="btn btn-secondary mt-2" [routerLink]="['/administrador/productos']">Lista de productos</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

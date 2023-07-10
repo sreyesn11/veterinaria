@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2>Productos</h2>
+    </div>
+    <div class="col-12">
+      <div class="row">
+        <!-- Loop para mostrar los productos -->
+        <div class="col-md-4 mb-4" *ngFor="let producto of listaProductos">
+          <div class="card">
+            <!-- Imagen del producto -->
+            <img [src]="producto.imagen" alt="Imagen del producto">
+            <div class="card-body">
+              <!-- Nombre del producto -->
+              <h5 class="card-title">{{ producto.nombreProducto }}</h5>
+              <!-- Descripción del producto -->
+              <p class="card-text">{{ producto.descripcion }}</p>
+              <!-- Precio del producto -->
+              <p class="card-text">Precio: ${{ producto.precio }}</p>
+              <!-- Botón para editar el producto -->
+              <button class="btn btn-primary" (click)="editarProducto(producto.id)">Editar</button>
+              <!-- Botón para eliminar el producto -->
+              <button class="btn btn-danger" (click)="eliminarProducto(producto)">Eliminar</button>
+            </div>
+          </div>
+        </div>
+        <!-- Fin del loop -->
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-secondary" (click)="agregarProducto()">Agregar Productos</button>
+</div>

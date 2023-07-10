@@ -6,18 +6,37 @@ import { ClientesComponent } from './pages/clientes/clientes.component';
 import { MascotasComponent } from './pages/mascotas/mascotas.component';
 import { ActualizarMascotaComponent } from './pages/mascotas/actualizar-mascota.component';
 import { ActualizarClienteComponent } from './pages/clientes/actualizar-cliente.component';
+import { PerfilAdministradorGuard } from './service/perfil-administrador.guard';
+import { ProductosComponent } from './pages/productos/productos.component';
+import { ActualizarProductosComponent } from './pages/productos/actualizar-productos.component';
+
 
 const routes: Routes = [
 
   { path: 'login', component: LoginComponent },
   {
-    path: '', component: PagesComponent, children: [
-      { path: 'clientes', component: ClientesComponent },
+    path: 'administrador',
+     component: PagesComponent,
+      canActivate: [PerfilAdministradorGuard],
+      children: [
+      {path: 'clientes', component: ClientesComponent },
       {path:'actualizarClientes/:identificacion',component:ActualizarClienteComponent},
       {path:'mascotas', component: MascotasComponent},
-      {path:'actualizarMascotas',component:ActualizarMascotaComponent}
+      {path:'actualizarMascotas/:identificacion',component:ActualizarMascotaComponent},
+      {path:'productos', component: ProductosComponent},
+      {path:'actualizarProductos/:identificacion',component:ActualizarProductosComponent},
+
+      // { path: '', redirectTo:'login', pathMatch:'full'},
+      // { path: '**', redirectTo:'login', pathMatch:'full'}
     ]
+  },
+  {
+    path: 'cliente',
+    component: PagesComponent,
+    children:[]
   }
+  ,{ path: '', redirectTo:'login', pathMatch:'full'}
+  ,{ path: '**', redirectTo:'login', pathMatch:'full'}
 
 ];
 

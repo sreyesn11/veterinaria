@@ -17,7 +17,7 @@ export class LoginComponent {
   formCrearUsuario: FormGroup = new FormGroup({});
   formRecuperarContrase: FormGroup = new FormGroup({});
   formLogin: FormGroup = new FormGroup({});
-
+  isLoggedIn: boolean = false;
 
   vmostrar_modulo: string = "Login";
   botonSeleccionado: string = "Login";
@@ -119,8 +119,10 @@ export class LoginComponent {
     let usuarioLogin = this.serviceCore.iniciarSesion(identificacion, contraseña);
 
     if (usuarioLogin) {
+      this.serviceCore.autenticacionDeUsuario(usuarioLogin);
       alert("Ingreso Exitoso")
-      this.router.navigate(['/clientes']);
+      this.isLoggedIn = true;
+      this.router.navigate(['/administrador/clientes']);
     }
     else {
       alert("Ingreso Invalido, Porfavor revisa que la identificacion y la contraseña sean validas");
@@ -132,6 +134,7 @@ export class LoginComponent {
       return;
     }
     let usuario: ModelUsuarios = this.formCrearUsuario.value;
+    usuario.perfilUsuario = 'VENDEDOR';
     this.serviceCore.agregarUsuario(usuario);
     this.formCrearUsuario.reset();
     this.router.navigate(['/clientes'])

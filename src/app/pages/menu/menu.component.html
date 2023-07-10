@@ -1,0 +1,54 @@
+<div class="menuFijo" *ngIf="usuarioAutenticado != null">
+    <div class="container-fluid">
+        <div class="col-md-3 bg-light">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link btn btn-outline-secondary btn-sm text-black btn-block"
+                        [routerLink]="['/administrador/mascotas']">Mascotas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-outline-secondary btn-sm text-black btn-block"
+                        [routerLink]="['/administrador/clientes']">Clientes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-outline-secondary btn-sm text-black btn-block"
+                        [routerLink]="['/administrador/productos']">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="nav-link btn btn-outline-secondary btn-sm text-black btn-block"
+                        data-toggle="modal" data-target="#modalAcercaDe">Acerca de</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalAcercaDe" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="aboutModalLabel">Veterinaria PetFriend</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h5>Contactanos:</h5>
+                        <p>Whatssap : 3259657485</p>
+                        <p>Instagram : petfriendIG</p>
+                        <p>Correo : petfriend@gmail.com</p>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="../../../assets/imagenes/vet.jpg" alt="Imagen de la veterinaria" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

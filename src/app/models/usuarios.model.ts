@@ -5,4 +5,5 @@ export class ModelUsuarios{
     public contraseña: string = '';
     public contraseñaConfirmada: string = '';
     public identificacionUsuario: string = '';
+    public perfilUsuario: string = '';
 }
